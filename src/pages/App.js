@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import '../assets/styles/App.css';
-import UsuarioForm from '../components/users/Register';
+import NewUser from '../pages/user/new';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UsuarioLista from './user';
 
 class App extends Component {
@@ -26,13 +27,22 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <div>
-        <UsuarioLista usuarios={this.state.usuarios} />
-          <p><strong>Añade usuarios</strong></p>
-          <UsuarioForm agregarUsuario={this.handleAgregarUsuario.bind(this)} />
+      <Router>
+        <div className="App">
+          <Routes> 
+            <Route
+              path="/users/new"
+              element={<NewUser/>}
+            />
+
+            {/* Ruta principal o listado de usuarios */}
+            <Route
+              path="/"
+              element={<UsuarioLista usuarios={this.state.usuarios} />}
+            />
+          </Routes>
         </div>
-      </div>
+      </Router>
     );
   }
 }
