@@ -11,7 +11,7 @@ const NavBar = () => {
             </div>
             <ul>
                 <li><NavLink to='/'>Inicio</NavLink></li>
-                <li><NavLink to='/e'>Sobre Nosotros</NavLink></li>
+                <li><NavLink to='/about-us'>Sobre Nosotros</NavLink></li>
                 <li><NavLink to='/recycling-points'>Puntos de Reciclaje</NavLink></li>
                 <li><NavLink to='/b'>Eventos</NavLink></li>
                 <li><NavLink to='/c'>Empresas</NavLink></li>
