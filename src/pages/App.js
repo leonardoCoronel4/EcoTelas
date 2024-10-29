@@ -2,6 +2,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../assets/styles/App.css';
 import NewUser from '../pages/user/new';
 import RecyclingPoints from '../pages/recyclingPoints';
+import AboutUs from '../pages/aboutUs';
 import Contact from '../pages/contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppMain from './index';
@@ -24,6 +25,10 @@ const App = () => {
                     <Route
                         path="/recycling-points"
                         element={<RecyclingPoints />}
+                    />
+                    <Route 
+                        path="/about-us"
+                        element={<AboutUs />}
                     />
                     <Route
                         path="/contact"

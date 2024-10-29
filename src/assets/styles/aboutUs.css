@@ -1,0 +1,27 @@
+.about-us-text {
+    background-color: #c3d4db;
+    color: #1c4175;
+}
+
+.about-us-text p {
+    text-align: justify;
+}
+
+.accordion-header button:first-of-type {
+    background-color: #c3d4db;
+    color: #1c4175;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.accordion-collapse {
+    background-color: #c3d4db;
+}
+
+.accordion-body{
+    text-align: justify;
+}
+ 
+.accordion-item{
+    border: none !important;
+}
