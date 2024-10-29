@@ -15,7 +15,7 @@ const NavBar = () => {
                 <li><NavLink to='/recycling-points'>Puntos de Reciclaje</NavLink></li>
                 <li><NavLink to='/b'>Eventos</NavLink></li>
                 <li><NavLink to='/c'>Empresas</NavLink></li>
-                <li><NavLink to='/d'>Contacto</NavLink></li>
+                <li><NavLink to='/contact'>Contacto</NavLink></li>
             </ul>
             <NavLink to="/" id='login'>Iniciar Sesion</NavLink>
         </nav>
