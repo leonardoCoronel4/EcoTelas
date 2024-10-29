@@ -1,0 +1,30 @@
+.carousel-item .row .carta {
+    background-color: #c3d4db;
+    color: #1c4175;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.ubicacion-carta {
+    position: absolute;
+    width: 25px;
+    height: auto;
+    bottom: 35px;
+    right: 55px;
+}
+
+.event-modal {
+    background-color: #c3d4db;
+    color: #1c4175;
+    border-radius: 7px;
+    padding: 15px 15px 35px 15px;
+}
+ 
+.closeButton{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}

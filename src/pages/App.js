@@ -1,7 +1,9 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../assets/styles/App.css';
 import NewUser from '../pages/user/new';
 import RecyclingPoints from '../pages/recyclingPoints';
+import Events from '../pages/events';
 import AboutUs from '../pages/aboutUs';
 import Contact from '../pages/contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -25,6 +27,10 @@ const App = () => {
                     <Route
                         path="/recycling-points"
                         element={<RecyclingPoints />}
+                    />
+                    <Route
+                        path="/events"
+                        element={<Events />}
                     />
                     <Route 
                         path="/about-us"
