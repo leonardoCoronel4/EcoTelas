@@ -6,29 +6,8 @@ const AboutUs = () => {
 
     return (
         <div className='d-flex p-5 justify-content-center'>
-            <div className="row">
-                <div className='col-md-1'>
-                </div>
-                <div className='col-md-3 about-us-text rounded-4 pt-4'>
-                    <h1 className='text-center fs-3'>
-                        Fundadores y Colaboradores
-                    </h1>
-                    <p className='text-start fs-4'>
-                        Nombres y roles:
-                    </p>
-                    <p className='text-start fs-4'>
-                        Empresas o instituciones:
-                    </p>
-                    <p className='text-start fs-4'>
-                        Proyectos en conjunto:
-                    </p>
-                    <p className='text-start fs-4'>
-                        Datos estadísticos:
-                    </p>
-                </div>
-                <div className='col-md-1'>
-                </div>
-                <div className='col-md-6 about-us-text rounded-4 pt-4'>
+            <div className="row"> 
+                <div className='col-md-12 about-us-text rounded-4 pt-4'>
                     <h1 className='text-start fs-3'>
                         Qué es Re-Vístete
                     </h1>
@@ -44,8 +23,7 @@ const AboutUs = () => {
                         consciente y comprometida con un estilo de vida sostenible.
                     </p>
                 </div>
-                <div className='col-md-2'>
-                </div>
+                <div className='col-md-2'></div>
                 <div className='col-md-8 about-us-text rounded-4 mt-4 py-3'>
                     <Accordion>
                         <Accordion.Item eventKey="0">
