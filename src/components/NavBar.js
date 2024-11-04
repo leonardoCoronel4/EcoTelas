@@ -21,7 +21,6 @@ const NavBar = () => {
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
-
     const getUserInfo = async () => {
         const token = localStorage.getItem("token");
         if (!token) return;
@@ -138,11 +137,14 @@ const NavBar = () => {
     useEffect(() => {
         getUserInfo();
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
                 setDropdownOpen(false);
             }
         };
-    
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -192,15 +194,18 @@ const NavBar = () => {
                 </ul>
                 <div id="user-section">
                     {user ? (
-                        <div className="dropdown navName" ref={dropdownRef}>
+                        <div className="dropdown navName profile-logo" ref={dropdownRef}>
                             <button
                                 onClick={toggleDropdown}
-                                className="user-button"
+                                className={dropdownOpen ? "user-button-clicked user-button" : "user-button"}
                             >
-                                {user.name}
+                                <div className="logo-container">
+                                        <img src={userLogo} alt="Logo Revistete" />
+                                </div>
                             </button>
                             {dropdownOpen && (
                                 <div className="dropdown-menu">
+                                    <h5 className="text-center profile-name">{user.name}</h5>
                                     <NavLink
                                         to="/profile"
                                         className="dropdown-item"
