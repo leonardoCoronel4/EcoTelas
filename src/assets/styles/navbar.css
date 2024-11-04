@@ -64,8 +64,105 @@ nav ul li a.active {
     height: 100%;
 }
 
-#login {
+.login-button {
     background-color: #e9e3d0;
     border-radius: 20px;
+    border: none;
     padding: 10px 20px 10px 20px;
+    color: #1c4175;
+}
+
+.modal-button {
+    background-color: #929799;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.modal-content{
+    background-color: #c3d4db;
+    input {
+        background-color: #c3d4db;
+        border: none;
+        border-bottom: 1px solid black;
+        color: white;
+        font-size: large;
+    }
+}
+
+.modal-content input::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.modal-content{
+    border-radius: 20px !important;
+    display: flex;
+}
+
+.registerLink{
+    cursor: pointer;
+}
+
+.w-90{
+    width: 90%;
+}
+
+#registerModal .modal-content, #loginModal .modal-content {
+    position: relative;
+    padding-top: 70px;
+}
+
+#registerModal img, #loginModal img {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 3px solid #cccccc;
+    object-fit: cover;
 }
