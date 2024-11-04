@@ -90,8 +90,6 @@ const NavBar = () => {
             );
 
             if (response.ok) {
-                // Registro exitoso, ahora proceder a loguearse automáticamente
-                // Intentamos el login con los datos de registro (email y password)
                 const loginResponse = await fetch(
                     "http://localhost:3001/api/users/login",
                     {
