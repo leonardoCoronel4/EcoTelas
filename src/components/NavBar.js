@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import userLogo from "../assets/images/user.png";
@@ -19,6 +19,8 @@ const NavBar = () => {
         role: "",
     });
     const navigate = useNavigate();
+    const dropdownRef = useRef(null);
+
 
     const getUserInfo = async () => {
         const token = localStorage.getItem("token");
@@ -135,6 +137,16 @@ const NavBar = () => {
 
     useEffect(() => {
         getUserInfo();
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+    
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, []);
 
     const toggleDropdown = () => {
@@ -180,7 +192,7 @@ const NavBar = () => {
                 </ul>
                 <div id="user-section">
                     {user ? (
-                        <div className="dropdown">
+                        <div className="dropdown navName" ref={dropdownRef}>
                             <button
                                 onClick={toggleDropdown}
                                 className="user-button"
