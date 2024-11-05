@@ -6,6 +6,7 @@ import RecyclingPoints from '../pages/recyclingPoints';
 import Events from '../pages/events';
 import AboutUs from '../pages/aboutUs';
 import Contact from '../pages/contact';
+import Profile from '../pages/profile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppMain from './index';
 import NavBar from '../components/NavBar';
@@ -39,6 +40,10 @@ const App = () => {
                     <Route
                         path="/contact"
                         element={<Contact />}
+                    />
+                    <Route
+                        path="/profile"
+                        element={<Profile />}
                     />
                 </Routes>
             </div>
