@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import user from "../../assets/images/user.png";
-import "../../assets/styles/contact.css";
+import "../../assets/styles/profile.css";
 
 class Profile extends Component {
     render() {
