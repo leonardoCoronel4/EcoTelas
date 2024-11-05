@@ -29,6 +29,7 @@ const NavBar = () => {
             email: "",
             password: "",
             name: "",
+            surname: "",
             role: "",
         });
         setErrorMessage("");
@@ -356,6 +357,24 @@ const NavBar = () => {
                                         setRegisterData({
                                             ...registerData,
                                             name: e.target.value,
+                                        })
+                                    }
+                                    required
+                                />
+                            </div>
+
+                            <div className="loginInput surnameInput w-100 pb-3">
+                                <input
+                                    type="text"
+                                    className="w-90"
+                                    placeholder="Apellido"
+                                    id="registerSurname"
+                                    name="Surname"
+                                    value={registerData.surname}
+                                    onChange={(e) =>
+                                        setRegisterData({
+                                            ...registerData,
+                                            surname: e.target.value,
                                         })
                                     }
                                     required
