@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import userLogo from "../assets/images/user.png";
 import "../assets/styles/navbar.css";
 
 const NavBar = () => {
+    const location = useLocation();
     const [user, setUser] = useState(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -32,7 +33,7 @@ const NavBar = () => {
         });
         setErrorMessage("");
     };
-    
+
 
     const getUserInfo = async () => {
         const token = localStorage.getItem("token");
@@ -50,8 +51,6 @@ const NavBar = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUser(data);
-            } else {
-                setErrorMessage("Error al obtener los datos del usuario.");
             }
         } catch (error) {
             setErrorMessage("Error en la solicitud.");
@@ -68,7 +67,7 @@ const NavBar = () => {
                 },
                 body: JSON.stringify({ email: username, password }),
             });
-    
+
             const data = await response.json();
             if (response.ok) {
                 if (data.auth) {
@@ -83,7 +82,7 @@ const NavBar = () => {
             setErrorMessage("Error en la solicitud.");
         }
     };
-    
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -94,7 +93,7 @@ const NavBar = () => {
                 },
                 body: JSON.stringify(registerData),
             });
-    
+
             const data = await response.json();
             if (response.ok) {
                 const loginResponse = await fetch("http://localhost:3001/api/users/login", {
@@ -107,7 +106,7 @@ const NavBar = () => {
                         password: registerData.password,
                     }),
                 });
-    
+
                 const loginData = await loginResponse.json();
                 if (loginResponse.ok) {
                     if (loginData.auth) {
@@ -125,7 +124,7 @@ const NavBar = () => {
         } catch (error) {
             setErrorMessage("Error en la solicitud de registro.");
         }
-    };    
+    };
 
     const Logout = () => {
         localStorage.removeItem("token");
@@ -167,7 +166,7 @@ const NavBar = () => {
         setShowLoginModal(!showLoginModal);
         setShowRegisterModal(false);
     };
-    
+
     const handleRegisterModalToggle = () => {
         resetForm();
         setShowRegisterModal(!showRegisterModal);
@@ -181,7 +180,7 @@ const NavBar = () => {
                     <NavLink to="/">
                         <img src={logo} alt="Logo Revistete" />
                     </NavLink>
-                </div> 
+                </div>
                 {location.pathname == '/' && (
                     <ul style={{ margin: 0 }}>
                         <li><NavLink to="/">Inicio</NavLink></li>
@@ -202,7 +201,6 @@ const NavBar = () => {
                         <li><NavLink to='/'>Contacto</NavLink></li>
                     </ul>
                 )}
-                <NavLink to="/" id='login'>Iniciar Sesion</NavLink>
                 <div id="user-section">
                     {user ? (
                         <div className="dropdown navName profile-logo" ref={dropdownRef}>
@@ -211,7 +209,7 @@ const NavBar = () => {
                                 className={dropdownOpen ? "user-button-clicked user-button" : "user-button"}
                             >
                                 <div className="logo-container">
-                                        <img src={userLogo} alt="Logo Revistete" />
+                                    <img src={userLogo} alt="Logo Revistete" />
                                 </div>
                             </button>
                             {dropdownOpen && (
