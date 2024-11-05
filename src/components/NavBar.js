@@ -181,29 +181,28 @@ const NavBar = () => {
                     <NavLink to="/">
                         <img src={logo} alt="Logo Revistete" />
                     </NavLink>
-                </div>
-                <ul>
-                    <li>
-                        <NavLink to="/">Inicio</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about-us">Sobre Nosotros</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/recycling-points">
-                            Puntos de Reciclaje
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/events">Eventos</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/c">Empresas</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact">Contacto</NavLink>
-                    </li>
-                </ul>
+                </div> 
+                {location.pathname == '/' && (
+                    <ul style={{ margin: 0 }}>
+                        <li><NavLink to="/">Inicio</NavLink></li>
+                        <li><a href='#seccionAbout'>Sobre Nosotros</a></li>
+                        <li><a href='#seccionPoints'>Puntos de Reciclaje</a></li>
+                        <li><a href='#seccionEvents'>Eventos</a></li>
+                        <li><NavLink to='/c'>Empresas</NavLink></li>
+                        <li><a href='#seccionAbout'>Contacto</a></li>
+                    </ul>
+                )}
+                {location.pathname != '/' && (
+                    <ul style={{ margin: 0 }}>
+                        <li><NavLink to="/">Inicio</NavLink></li>
+                        <li><NavLink to='/'>Sobre Nosotros</NavLink></li>
+                        <li><NavLink to='/'>Puntos de Reciclaje</NavLink></li>
+                        <li><NavLink to='/'>Eventos</NavLink></li>
+                        <li><NavLink to='/c'>Empresas</NavLink></li>
+                        <li><NavLink to='/'>Contacto</NavLink></li>
+                    </ul>
+                )}
+                <NavLink to="/" id='login'>Iniciar Sesion</NavLink>
                 <div id="user-section">
                     {user ? (
                         <div className="dropdown navName profile-logo" ref={dropdownRef}>
