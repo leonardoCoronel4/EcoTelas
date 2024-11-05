@@ -16,7 +16,7 @@ const Carousel = ({ items, slidesToShow = 3, centerMode = true, centerPadding = 
     };
 
     return (
-        <div style={{ width: '80%', margin: '0 auto' }}>
+        <div style={{ width: '100%', margin: '0 auto' }}>
             <Slider {...settings}>
                 {items.map((item, index) => (
                     <div
