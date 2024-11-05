@@ -149,6 +149,7 @@ nav ul li a.active {
 .dropdown-item:hover {
     background-color: #f1f1f1;
     border-radius: 15px 15px 0px 0px;
+    color: black;
 }
 
 .modal-content{
@@ -162,6 +163,10 @@ nav ul li a.active {
     }
 }
 
+.modal-content input:focus {
+    outline: none;
+}
+
 .modal-content input::placeholder {
     color: white;
     opacity: 1;
@@ -170,6 +175,11 @@ nav ul li a.active {
 .modal-content{
     border-radius: 20px !important;
     display: flex;
+}
+
+.error-message{
+    color: red;
+    margin-bottom: 20px;
 }
 
 .registerLink{

@@ -21,6 +21,19 @@ const NavBar = () => {
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
+    const resetForm = () => {
+        setUsername("");
+        setPassword("");
+        setRegisterData({
+            email: "",
+            password: "",
+            name: "",
+            role: "",
+        });
+        setErrorMessage("");
+    };
+    
+
     const getUserInfo = async () => {
         const token = localStorage.getItem("token");
         if (!token) return;
@@ -48,85 +61,71 @@ const NavBar = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(
-                "http://localhost:3001/api/users/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ email: username, password }),
-                }
-            );
-
+            const response = await fetch("http://localhost:3001/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: username, password }),
+            });
+    
+            const data = await response.json();
             if (response.ok) {
-                const data = await response.json();
                 if (data.auth) {
                     localStorage.setItem("token", data.token);
                     setShowLoginModal(false);
                     window.location.href = "/";
-                } else {
-                    setErrorMessage(`Error: ${data.message}`);
                 }
             } else {
-                setErrorMessage("Usuario o contraseña incorrectos");
+                setErrorMessage(data.error || "Usuario o contraseña incorrectos");
             }
         } catch (error) {
             setErrorMessage("Error en la solicitud.");
         }
     };
-
+    
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(
-                "http://localhost:3001/api/users/register",
-                {
+            const response = await fetch("http://localhost:3001/api/users/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(registerData),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                const loginResponse = await fetch("http://localhost:3001/api/users/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(registerData),
-                }
-            );
-
-            if (response.ok) {
-                const loginResponse = await fetch(
-                    "http://localhost:3001/api/users/login",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            email: registerData.email,
-                            password: registerData.password,
-                        }),
-                    }
-                );
-
+                    body: JSON.stringify({
+                        email: registerData.email,
+                        password: registerData.password,
+                    }),
+                });
+    
+                const loginData = await loginResponse.json();
                 if (loginResponse.ok) {
-                    const loginData = await loginResponse.json();
                     if (loginData.auth) {
                         localStorage.setItem("token", loginData.token);
                         setShowRegisterModal(false);
                         setShowLoginModal(false);
                         window.location.href = "/";
-                    } else {
-                        setErrorMessage(`Error: ${loginData.message}`);
                     }
                 } else {
-                    setErrorMessage(
-                        "Error al intentar iniciar sesión después del registro."
-                    );
+                    setErrorMessage(loginData.error || "Error al iniciar sesión después del registro");
                 }
             } else {
-                setErrorMessage("Error al registrar usuario.");
+                setErrorMessage(data.error || "Error en el registro");
             }
         } catch (error) {
             setErrorMessage("Error en la solicitud de registro.");
         }
-    };
+    };    
 
     const Logout = () => {
         localStorage.removeItem("token");
@@ -157,9 +156,22 @@ const NavBar = () => {
 
     const handleOutsideClick = (e) => {
         if (e.target.classList.contains("modal")) {
+            resetForm();
             setShowLoginModal(false);
             setShowRegisterModal(false);
         }
+    };
+
+    const handleLoginModalToggle = () => {
+        resetForm();
+        setShowLoginModal(!showLoginModal);
+        setShowRegisterModal(false);
+    };
+    
+    const handleRegisterModalToggle = () => {
+        resetForm();
+        setShowRegisterModal(!showRegisterModal);
+        setShowLoginModal(false);
     };
 
     return (
@@ -250,7 +262,7 @@ const NavBar = () => {
                         <div className="modal-content">
                             <div className="d-flex justify-content-center">
                                 <img
-                                    className="w-25 d-flex justify-content-center"
+                                    className="d-flex justify-content-center"
                                     src={userLogo}
                                 ></img>
                             </div>
@@ -307,14 +319,7 @@ const NavBar = () => {
                                     Iniciar sesión
                                 </button>
                             </div>
-
-                            {errorMessage && (
-                                <div id="errorMessages">
-                                    <p className="errorMessage">
-                                        {errorMessage}
-                                    </p>
-                                </div>
-                            )}
+                            {errorMessage && <span className="error-message">{errorMessage}</span>}
                         </div>
                     </div>
                 </div>
@@ -337,7 +342,7 @@ const NavBar = () => {
                         <div className="modal-content">
                             <div className="d-flex justify-content-center">
                                 <img
-                                    className="w-25 d-flex justify-content-center"
+                                    className="d-flex justify-content-center"
                                     src={userLogo}
                                 ></img>
                             </div>
@@ -435,6 +440,7 @@ const NavBar = () => {
                                     Registrarse
                                 </button>
                             </div>
+                            {errorMessage && <span className="error-message">{errorMessage}</span>}
                         </div>
                     </div>
                 </div>
