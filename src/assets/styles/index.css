@@ -27,7 +27,7 @@ section {
     width: 50px;
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    right: 30px;
     background-color: #333;
     color: white;
     border: none;
