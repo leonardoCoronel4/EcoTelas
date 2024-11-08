@@ -10,6 +10,7 @@ import Profile from '../pages/profile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppMain from './index';
 import NavBar from '../components/NavBar';
+import ProtectedRoute from '../ProtectedRoute';
 
 const App = () => {
     return (
@@ -43,7 +44,7 @@ const App = () => {
                     />
                     <Route
                         path="/profile"
-                        element={<Profile />}
+                        element={<ProtectedRoute element={Profile} />}
                     />
                 </Routes>
             </div>
