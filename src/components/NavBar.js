@@ -162,18 +162,6 @@ const NavBar = () => {
         }
     };
 
-    const handleLoginModalToggle = () => {
-        resetForm();
-        setShowLoginModal(!showLoginModal);
-        setShowRegisterModal(false);
-    };
-
-    const handleRegisterModalToggle = () => {
-        resetForm();
-        setShowRegisterModal(!showRegisterModal);
-        setShowLoginModal(false);
-    };
-
     return (
         <>
             <nav>
@@ -182,26 +170,14 @@ const NavBar = () => {
                         <img src={logo} alt="Logo Revistete" />
                     </NavLink>
                 </div>
-                {location.pathname == '/' && (
-                    <ul style={{ margin: 0 }}>
-                        <li><NavLink to="/">Inicio</NavLink></li>
-                        <li><a href='#seccionAbout'>Sobre Nosotros</a></li>
-                        <li><a href='#seccionPoints'>Puntos de Reciclaje</a></li>
-                        <li><a href='#seccionEvents'>Eventos</a></li>
-                        <li><NavLink to='/c'>Empresas</NavLink></li>
-                        <li><a href='#seccionAbout'>Contacto</a></li>
-                    </ul>
-                )}
-                {location.pathname != '/' && (
-                    <ul style={{ margin: 0 }}>
-                        <li><NavLink to="/">Inicio</NavLink></li>
-                        <li><NavLink to='/'>Sobre Nosotros</NavLink></li>
-                        <li><NavLink to='/'>Puntos de Reciclaje</NavLink></li>
-                        <li><NavLink to='/'>Eventos</NavLink></li>
-                        <li><NavLink to='/c'>Empresas</NavLink></li>
-                        <li><NavLink to='/'>Contacto</NavLink></li>
-                    </ul>
-                )}
+                <ul style={{ margin: 0 }}>
+                    <li><NavLink to="/">Inicio</NavLink></li>
+                    <li><a href='/#seccionAbout'>Sobre Nosotros</a></li>
+                    <li><a href='/#seccionPoints'>Puntos de Reciclaje</a></li>
+                    <li><a href='/#seccionEvents'>Eventos</a></li>
+                    <li><NavLink to='/companies'>Empresas</NavLink></li>
+                    <li><a href='/#seccionAbout'>Contacto</a></li>
+                </ul>
                 <div id="user-section">
                     {user ? (
                         <div className="dropdown navName profile-logo" ref={dropdownRef}>
@@ -429,7 +405,7 @@ const NavBar = () => {
                                             setRegisterData({
                                                 ...registerData,
                                                 role: e.target.checked
-                                                    ? "admin"
+                                                    ? "company"
                                                     : "user",
                                             })
                                         }

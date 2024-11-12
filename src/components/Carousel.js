@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 
-const Carousel = ({ items, slidesToShow = 3, centerMode = true, centerPadding = '0', handleEvent }) => {
+const Carousel = ({ items, slidesToShow = 3, centerMode = true, centerPadding = '0', handleEvent, viewMaerker = true }) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -29,7 +29,15 @@ const Carousel = ({ items, slidesToShow = 3, centerMode = true, centerPadding = 
                                     <div className="fw-bold">{item.title}</div>
                                     <div className="fw-bold">{item.content}</div>
                                 </div>
-                                <img className='ubicacion-carta' src={markerIconPng} alt="Ubicacion" />
+                                {viewMaerker ? (
+                                    <img className='ubicacion-carta' src={markerIconPng} alt="Ubicacion" />
+                                ) : (
+                                    <div className='text-center'>
+                                        <p className='fs-5 p-2 rounded-5 m-4' style={{ backgroundColor: '#e9e3d0' }}>
+                                            Información
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

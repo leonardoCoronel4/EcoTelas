@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import logo from "../assets/images/re-vistete.png";
 import footer from "../assets/images/footer.jpg";
 import "../assets/styles/index.css";
@@ -9,6 +10,7 @@ import Events from "../pages/events";
 
 const AppMain = () => {
     const [showButton, setShowButton] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,9 +23,21 @@ const AppMain = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        if (location.hash) {
+            const sectionId = location.hash.replace("#", "");
+            const sectionElement = document.getElementById(sectionId);
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [location]);
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
     return (
         <div className="d-flex flex-column align-items-center">
             <section id="seccionIndex">

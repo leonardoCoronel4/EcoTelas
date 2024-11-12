@@ -80,3 +80,9 @@
   width: 80% !important;
   height: 80% !important;
 }
+
+.createCompany { 
+  position: fixed;
+  bottom: 115px;
+  right: 20px;
+}
