@@ -66,7 +66,7 @@ const MultipleSelect: React.FC<ISelectProps> = ({ name, options, value = [], onC
                 name={name}
                 value={''}
                 onChange={handleSelect}
-                className={`form-control ${className} ${error ? 'is-invalid' : ''}`}
+                className={`form-control mb-4 ${className} ${error ? 'is-invalid' : ''}`}
             >
                 <option value="" disabled>Seleccione una opción</option>
                 {availableOptions.map((option) => (
@@ -75,7 +75,6 @@ const MultipleSelect: React.FC<ISelectProps> = ({ name, options, value = [], onC
                     </option>
                 ))}
             </select>
-
             {error && <span className="error">{error}</span>}
         </div>
     );

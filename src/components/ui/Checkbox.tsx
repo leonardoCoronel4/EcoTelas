@@ -10,15 +10,13 @@ interface CheckboxProps {
 
 const Checkbox: React.FC<CheckboxProps> = ({ label, name, register, className }) => {
     return (
-        <div className="flex flex-col">
-            <label>
-                {label}
-                <input
-                    type="checkbox"
-                    className={className}
-                    {...register(name)}
-                />
-            </label>
+        <div className="d-flex  ">
+            {label}
+            <input
+                type="checkbox"
+                className={`${className}`}
+                {...register(name)}
+            />
         </div>
     );
 };

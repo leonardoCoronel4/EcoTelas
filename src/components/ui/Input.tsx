@@ -13,7 +13,7 @@ interface IInputProps {
 
 const Input: React.FC<IInputProps> = ({ type, name, placeholder, className, error, register, step }) => {
     return (
-        <div className="flex flex-col">
+        <div>
             <input
                 type={type}
                 step={step ? step : undefined}

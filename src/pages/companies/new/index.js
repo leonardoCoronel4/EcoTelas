@@ -89,7 +89,7 @@ const CreateCompany = () => {
                 },
                 body: JSON.stringify(data)
             })
-            if (response.ok) { 
+            if (response.ok) {
                 alert("Compañía creada exitosamente");
                 navigate('/companies');
             } else {
@@ -103,79 +103,83 @@ const CreateCompany = () => {
     };
 
     return (
-        <div className="container">
-            <h2>Crear Nueva Compañía</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                    type="text"
-                    name="name"
-                    placeholder="Nombre de la compañía"
-                    className="m-3"
-                    error={errors.name?.message}
-                    register={register}
-                />
-                <Input
-                    type="text"
-                    name="location"
-                    placeholder="Ubicación de la compañía"
-                    className="m-3"
-                    error={errors.location?.message}
-                    register={register}
-                />
-                <Checkbox
-                    label='Servicio de Recolección:'
-                    name='recolectionService'
-                    className=''
-                    register={register}
-                />
-                {isRecolectionServiceEnabled &&
+        <div className="flex items-center justify-center bg-gray-100 ">
+            <div className="mx-auto bg-white shadow-lg rounded-5 w-50  mt-5 p-5">
+                <h2>Créa una nueva compañía</h2>
+                <form className="space-y-4 " onSubmit={handleSubmit(onSubmit)}>
                     <Input
                         type="text"
-                        name="recolectionSchedule"
-                        placeholder="Horario de Recolección:"
-                        className="m-3"
-                        error={errors.recolectionSchedule?.message}
+                        name="name"
+                        placeholder="Nombre de la compañía"
+                        className="ml-3 mt-4"
+                        error={errors.name?.message}
                         register={register}
                     />
-                }
-                <Input
-                    type="text"
-                    name="companySchedule"
-                    placeholder="Horario de la Compañía:"
-                    className="m-3"
-                    error={errors.companySchedule?.message}
-                    register={register}
-                />
-                <Input
-                    type="number"
-                    step="0.0001"
-                    name="lat"
-                    placeholder="Latitud:"
-                    className="m-3"
-                    error={errors.lat?.message}
-                    register={register}
-                />
-                <Input
-                    type="number"
-                    step="0.0001"
-                    name="lng"
-                    placeholder="Longitud:"
-                    className="m-3"
-                    error={errors.lng?.message}
-                    register={register}
-                />
+                    <Input
+                        type="text"
+                        name="location"
+                        placeholder="Ubicación de la compañía"
+                        className="ml-3 mt-4"
+                        error={errors.location?.message}
+                        register={register}
+                    />
+                    <div className='  justify-content-between mt-4'>
+                        <Checkbox
+                            label='Servicio de Recolección:'
+                            name='recolectionService'
+                            className='ms-2 mt-1'
+                            register={register}
+                        />
+                        {isRecolectionServiceEnabled &&
+                            <Input
+                                type="text"
+                                name="recolectionSchedule"
+                                placeholder="Horario de Recolección:"
+                                className=" "
+                                error={errors.recolectionSchedule?.message}
+                                register={register}
+                            />
+                        }
+                    </div>
+                    <Input
+                        type="text"
+                        name="companySchedule"
+                        placeholder="Horario de la Compañía:"
+                        className="ml-3 mt-4"
+                        error={errors.companySchedule?.message}
+                        register={register}
+                    />
+                    <Input
+                        type="number"
+                        step="0.0001"
+                        name="lat"
+                        placeholder="Latitud:"
+                        className="ml-3 mt-4"
+                        error={errors.lat?.message}
+                        register={register}
+                    />
+                    <Input
+                        type="number"
+                        step="0.0001"
+                        name="lng"
+                        placeholder="Longitud:"
+                        className="ml-3 mt-4"
+                        error={errors.lng?.message}
+                        register={register}
+                    />
 
-                <MultipleSelect
-                    name="textileTypeIds"
-                    options={textileTypes.map((type) => { return { value: type._id, label: type.name } })}
-                    register={register("textileTypeIds")}
-                    onChange={(selected) => formMethods.setValue('textileTypeIds', selected)}
-                    error={errors.textileTypeIds?.message}
-                    className='ms-3'
-                />
+                    <MultipleSelect
+                        name="textileTypeIds"
+                        options={textileTypes.map((type) => { return { value: type._id, label: type.name } })}
+                        register={register("textileTypeIds")}
+                        onChange={(selected) => formMethods.setValue('textileTypeIds', selected)}
+                        error={errors.textileTypeIds?.message}
+                        className='mt-3'
+                    />
 
-                <button type="submit" className="btn btn-primary">Crear Compañía</button>
-            </form >
+                    <button type="submit" className="btn btn-primary create-company fw-bold px-4 py-2 ">Crear Compañía</button>
+                </form >
+            </div >
         </div >
     );
 };
