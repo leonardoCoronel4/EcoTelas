@@ -28,7 +28,6 @@ const Profile = () => {
                 );
 
                 const contentType = response.headers.get("content-type");
-                console.log("Tipo de contenido:", contentType);
 
                 if (contentType && contentType.includes("application/json")) {
                     const data = await response.json();
