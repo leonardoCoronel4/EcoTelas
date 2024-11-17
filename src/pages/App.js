@@ -6,6 +6,8 @@ import RecyclingPoints from '../pages/recyclingPoints';
 import Events from '../pages/events';
 import AboutUs from '../pages/aboutUs';
 import Contact from '../pages/contact';
+import Company from '../pages/companies';
+import CreateCompany from '../pages/companies/new';
 import Profile from '../pages/profile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppMain from './index';
@@ -45,6 +47,14 @@ const App = () => {
                     <Route
                         path="/profile"
                         element={<ProtectedRoute element={Profile} />}
+                    />
+                    <Route
+                        path="/companies"
+                        element={<Company />}
+                    />
+                    <Route
+                        path="/companies/new"
+                        element={<ProtectedRoute element={CreateCompany}  requiredRole="company"/>}
                     />
                 </Routes>
             </div>

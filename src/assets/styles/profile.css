@@ -81,6 +81,12 @@
   height: 80% !important;
 }
 
+.createCompany { 
+  position: fixed;
+  bottom: 115px;
+  right: 20px;
+ }
+
 .field{
   display: flex;
   flex-direction: column;

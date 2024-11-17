@@ -1,0 +1,14 @@
+.error {
+    color: red
+}
+
+.create-company {
+    background-color: #a8b4b9;
+    border: #a8b4b9;
+    color: #002b69
+}
+
+.create-company:hover {
+    background-color: #e9e3d0;
+    color: #002b69
+}
