@@ -54,7 +54,7 @@ const App = () => {
                     />
                     <Route
                         path="/companies/new"
-                        element={<CreateCompany />}
+                        element={<ProtectedRoute element={CreateCompany}  requiredRole="company"/>}
                     />
                 </Routes>
             </div>
