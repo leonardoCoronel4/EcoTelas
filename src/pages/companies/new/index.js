@@ -105,7 +105,7 @@ const CreateCompany = () => {
     return (
         <div className="flex items-center justify-center bg-gray-100 ">
             <div className="mx-auto bg-white shadow-lg rounded-5 w-50  mt-5 p-5">
-                <h2>Créa una nueva compañía</h2>
+                <h2>Crea una nueva compañía</h2>
                 <form className="space-y-4 " onSubmit={handleSubmit(onSubmit)}>
                     <Input
                         type="text"

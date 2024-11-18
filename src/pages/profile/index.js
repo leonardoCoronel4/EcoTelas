@@ -21,6 +21,10 @@ const Profile = () => {
         navigate("/companies/new");
     };
 
+    const handleOwnedCompanies = () => {
+        navigate("/companies/owned");
+    };
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -254,6 +258,7 @@ const Profile = () => {
                                     backgroundColor: "#c3d4db",
                                     color: "#1c4175",
                                 }}
+                                onClick={handleOwnedCompanies}
                             >
                                 Ver Mis Empresas
                             </button>
