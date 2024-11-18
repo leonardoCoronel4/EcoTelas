@@ -7,6 +7,7 @@ import Events from '../pages/events';
 import AboutUs from '../pages/aboutUs';
 import Contact from '../pages/contact';
 import Company from '../pages/companies';
+import ownedCompanies from '../pages/companies/owned';
 import CreateCompany from '../pages/companies/new';
 import Profile from '../pages/profile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -55,6 +56,10 @@ const App = () => {
                     <Route
                         path="/companies/new"
                         element={<ProtectedRoute element={CreateCompany}  requiredRole="company"/>}
+                    />
+                    <Route
+                        path="/companies/owned"
+                        element={<ProtectedRoute element={ownedCompanies} requiredRole="company"/>}
                     />
                 </Routes>
             </div>
