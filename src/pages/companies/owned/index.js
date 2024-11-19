@@ -28,7 +28,6 @@ const Companies = () => {
         register,
         handleSubmit,
         watch,
-        setValue,
         reset,
         formState: { errors },
     } = formMethods;
@@ -100,11 +99,10 @@ const Companies = () => {
     const handleEdit = (company) => {
         setSelectedCompany(company);
         const textileIds = company.textileTypes || [];
-        const selectedTextiles = textileTypes.filter((type) =>
-            textileIds.includes(type._id)
-        );
         reset(company);
         formMethods.setValue("textileTypeIds", textileIds);
+        formMethods.setValue("lat", company.lat.toString());
+        formMethods.setValue("lng", company.lng.toString());
         setShowEditModal(true);
     };
 
@@ -156,25 +154,25 @@ const Companies = () => {
                         style={{ width: "18rem" }}
                     >
                         <div>
-                        <h5 className="card-title">{company.name}</h5>
-                        <p className="card-text">
-                            Ubicación: {company.location}
-                        </p>
-                        <p className="card-text">
-                            Servicio de Recolección:{" "}
-                            {company.recolectionService ? "Sí" : "No"}
-                        </p>
-                        <p className="card-text">
-                            Horario de la empresa:{" "}
-                            {company.companySchedule || "No especificado"}
-                        </p>
-                        {company.recolectionService && (
+                            <h5 className="card-title">{company.name}</h5>
                             <p className="card-text">
-                                Horario de Recolección:{" "}
-                                {company.recolectionSchedule ||
-                                    "No especificado"}
+                                Ubicación: {company.location}
                             </p>
-                        )}
+                            <p className="card-text">
+                                Servicio de Recolección:{" "}
+                                {company.recolectionService ? "Sí" : "No"}
+                            </p>
+                            <p className="card-text">
+                                Horario de la empresa:{" "}
+                                {company.companySchedule || "No especificado"}
+                            </p>
+                            {company.recolectionService && (
+                                <p className="card-text">
+                                    Horario de Recolección:{" "}
+                                    {company.recolectionSchedule ||
+                                        "No especificado"}
+                                </p>
+                            )}
                         </div>
                         <button
                             className="btn btn-primary"
@@ -261,7 +259,7 @@ const Companies = () => {
                             <Input
                                 id="lat"
                                 type="number"
-                                step="0.0001"
+                                step="0.000001"
                                 name="lat"
                                 placeholder="Latitud"
                                 error={errors.lat?.message}
@@ -271,7 +269,7 @@ const Companies = () => {
                             <Input
                                 id="lng"
                                 type="number"
-                                step="0.0001"
+                                step="0.000001"
                                 name="lng"
                                 placeholder="Longitud"
                                 error={errors.lng?.message}

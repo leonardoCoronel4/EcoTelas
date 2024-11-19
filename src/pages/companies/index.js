@@ -221,7 +221,7 @@ const Companies = () => {
                                             </Marker>
                                         </MapContainer>
                                     </div>
-                                    {onwerId != '' && selectedCompany.services && (
+                                    {onwerId !== '' && selectedCompany.services && (
                                         <div className='d-flex justify-content-end'>
                                             <button className='rounded-5 me-5 mt-2 fw-bold px-4 py-1' style={{ border: 'none', backgroundColor: '#e9e3d0', color: '#1c4175' }} onClick={show ? handleClose : handleOpen}>
                                                 Hacer Solicitud
