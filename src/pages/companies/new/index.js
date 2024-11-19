@@ -151,7 +151,7 @@ const CreateCompany = () => {
                     />
                     <Input
                         type="number"
-                        step="0.0001"
+                        step="0.000001"
                         name="lat"
                         placeholder="Latitud:"
                         className="ml-3 mt-4"
@@ -160,7 +160,7 @@ const CreateCompany = () => {
                     />
                     <Input
                         type="number"
-                        step="0.0001"
+                        step="0.000001"
                         name="lng"
                         placeholder="Longitud:"
                         className="ml-3 mt-4"
