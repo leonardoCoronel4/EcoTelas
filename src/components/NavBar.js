@@ -149,7 +149,43 @@ const NavBar = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
+    useEffect(() => {
+        const verifyUser = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    setIsAuthorized(false);
+                    return;
+                }
+
+                const response = await fetch('http://localhost:3001/api/users/me', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    const userData = await response.json();
+                    if ('company' && userData.role !== 'company') {
+                        setIsAuthorized(false);
+                    } else {
+                        setIsAuthorized(true);
+                    }
+                } else {
+                    setIsAuthorized(false);
+                }
+            } catch (error) {
+                console.error('Error al verificar el usuario:', error);
+                setIsAuthorized(false);
+            }
+        };
+
+        verifyUser();
+    }, []);
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
@@ -176,6 +212,7 @@ const NavBar = () => {
                     <li><a href='/#seccionPoints'>Puntos de Reciclaje</a></li>
                     <li><a href='/#seccionEvents'>Eventos</a></li>
                     <li><NavLink to='/companies'>Empresas</NavLink></li>
+                    {isAuthorized && (<li><NavLink to='/applications'>Solicitudes</NavLink></li>)}
                     <li><a href='/#seccionAbout'>Contacto</a></li>
                 </ul>
                 <div id="user-section">

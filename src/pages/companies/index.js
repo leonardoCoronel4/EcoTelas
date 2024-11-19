@@ -30,8 +30,8 @@ function closeModal() {
 
 export const applicationSchema = z.object({
     textileTypes: z.array(z.string()).min(1, 'Debes seleccionar al menos un tipo de textil'),
-    company: z.string().min(1, ''),
-    owner: z.string().min(1, ''),
+    company: z.string().min(1, 'Necesita estar logueado'),
+    owner: z.string().min(1, 'Necesita estar logueado'),
     address: z.string().min(1, "La dirección es necesaria"),
     description: z.string().optional(),
     schedule: z.string().min(1, "El Horario es obligatorio"),
@@ -49,15 +49,21 @@ const Companies = () => {
     const { register, handleSubmit, formState: { errors } } = formMethods;
     const [textileTypes, setTextileTypes] = useState([]);
     const [companies, setCompanies] = useState([]);
+    const [onwerId, setOwnerId] = useState(String);
 
     const [show, setShow] = useState(false);
+    const time = new Date();
 
     const handleClose = () => {
         formMethods.reset();
         setShow(false);
     };
 
-    const handleOpen = () => setShow(true);
+    const handleOpen = () => {
+        formMethods.setValue('owner', onwerId);
+        setShow(true);
+    };
+
     const [selectedCompany, setSelectedCompany] = useState(null);
 
     const handleOpenModal = (event) => {
@@ -65,9 +71,11 @@ const Companies = () => {
         formMethods.reset();
         formMethods.setValue('company', event.id)
         openModal();
+        console.log(event.id);
     };
+
     const handleCloseModal = () => {
-        closeModal(); 
+        closeModal();
         handleClose();
     };
 
@@ -89,6 +97,7 @@ const Companies = () => {
                     return response.json();
                 })
                 .then((data) => {
+                    setOwnerId(data._id)
                     formMethods.setValue('owner', data._id);
                 })
                 .catch((error) => {
@@ -146,7 +155,7 @@ const Companies = () => {
             })
             if (response.ok) {
                 alert("Recolección programada");
-                closeModal();
+                handleCloseModal();
             } else {
                 const errorData = await response.json();
                 alert(`Error: ${errorData.message || 'No se pudo crear la Recolección'}`);
@@ -212,11 +221,13 @@ const Companies = () => {
                                             </Marker>
                                         </MapContainer>
                                     </div>
-                                    <div className='d-flex justify-content-end'>
-                                        <button className='rounded-5 me-5 mt-2 fw-bold px-4 py-1' style={{ border: 'none', backgroundColor: '#e9e3d0', color: '#1c4175' }} onClick={show ? handleClose : handleOpen}>
-                                            Hacer Solicitud
-                                        </button>
-                                    </div>
+                                    {onwerId != '' && selectedCompany.services && (
+                                        <div className='d-flex justify-content-end'>
+                                            <button className='rounded-5 me-5 mt-2 fw-bold px-4 py-1' style={{ border: 'none', backgroundColor: '#e9e3d0', color: '#1c4175' }} onClick={show ? handleClose : handleOpen}>
+                                                Hacer Solicitud
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             ) : (
                                 <p>Cargando...</p>
@@ -265,6 +276,7 @@ const Companies = () => {
                                         <InputDate
                                             type="date"
                                             name="date"
+                                            min={time.toISOString().split('T')[0]}
                                             placeholder="Fecha:"
                                             className="ml-3 mt-4"
                                             error={errors.date?.message}
