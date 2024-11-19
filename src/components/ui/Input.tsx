@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 interface IInputProps {
     type: 'text' | 'number' | 'email' | 'password' | 'tel';
