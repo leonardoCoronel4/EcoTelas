@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface ISelectProps {
     name: string;
@@ -34,9 +34,7 @@ const MultipleSelect: React.FC<ISelectProps> = ({ name, options, value = [], onC
             ];
             setSelectedOptions(newSelectedOptions);
 
-            if (onChange) {
-                onChange(selectedOptionsMap);
-            }
+
         }
     }, [options, selectedOptions, onChange]);
 
@@ -44,6 +42,11 @@ const MultipleSelect: React.FC<ISelectProps> = ({ name, options, value = [], onC
         setSelectedOptions(selectedOptions.filter((item) => item.value !== value));
     };
 
+    useEffect(() => {
+        if (onChange) {
+            onChange(selectedOptions.map(option => option.value));
+        }
+    }, [selectedOptions]);
     return (
         <div>
             <div className={`rounded-2 d-flex mb-1 bg-white ${className}`} style={{ border: `1px solid ${error ? 'red' : 'gray'}`, minHeight: '48px' }}>

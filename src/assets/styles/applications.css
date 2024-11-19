@@ -1,0 +1,62 @@
+.applicaciones-left {
+    width: 25%;
+    background-color: #c3d4db;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.applicaciones-right {
+    width: 60%;
+    background-color: #c3d4db;
+}
+
+.application-button {
+    background-color: white;
+}
+
+.application-button:hover{
+    background-color: #c3d4db;
+    cursor: pointer;
+}
+
+.applicaciones {
+    height: 90%;
+}
+
+.applicaciones-body {
+    height: min(93vh, 100vh - 60px);
+}
+
+.application-details {
+    width: 90%;
+    margin: auto;
+    background-color: #a8b4b9;
+}
+
+.aplicaction-buttons {}
+
+.aplication-button-acept {
+    background-color: white;
+    font: bold; 
+    color: #002b69;
+    border: none;
+}
+
+.aplication-button-acept:hover {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.aplication-button-decline {
+    background-color: #a8b4b9;
+    font: bold;
+    color: #002b69;
+    border: none;
+}
+
+.aplication-button-decline:hover {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.aplication-img{
+    width: 100px;
+}

@@ -12,3 +12,83 @@
     background-color: #e9e3d0;
     color: #002b69
 }
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-modal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.custom-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+}
+
+.custom-modal-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.modalCompanie {
+    position: relative;
+    background-color: #c3d4db;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    max-height: 500px;
+}
+
+.modalApplication {
+    position: relative;
+    background-color: #c3d4db;
+    padding: 20px;
+    border-radius: 8px;
+    width: 20%;
+}
+
+.closeButtonModal {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
