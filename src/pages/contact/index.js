@@ -1,7 +1,39 @@
 
-import React from 'react';
-import '../../assets/styles/contact.css'
+import React, { useState } from 'react';
+import '../../assets/styles/contact.css';
+
 const Contact = () => {
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [subject, setSubject] = useState();
+    const [message, setMessage] = useState();
+
+    const sendMail = async () => {
+        const response = await fetch("http://localhost:3001/api/sendEmail",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    subject,
+                    message,
+                }),
+            }
+        );
+
+        if (response.ok) {
+            setEmail('')
+            setSubject("")
+            setMessage('')
+            setName('')
+            window.location.reload();
+        } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message}`);
+        }
+    };
     return (
         <div className="contact-form mt-5 pt-5">
             <div className="form-header">
@@ -12,25 +44,29 @@ const Contact = () => {
             </div>
             <hr className="header-line" />
 
-            <form className="row">
+            <div className="row">
                 <div className='col-md-4'>
                     <div className="form-group">
-                        <input type="text" className='w-100' required placeholder='Nombre Completo*' />
+                        <input type="text" className='w-100' required placeholder='Nombre Completo*'
+                            onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="form-group">
-                        <input type="email" className='w-100' required placeholder='E-mail*' />
+                        <input type="email" className='w-100' required placeholder='E-mail*'
+                            onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="form-group">
-                        <input type="text" className='w-100' required placeholder='Asunto*' />
+                        <input type="text" className='w-100' required placeholder='Asunto*'
+                            onChange={(e) => setSubject(e.target.value)} />
                     </div>
                 </div>
                 <div className='col-md-8'>
                     <div className="form-group">
-                        <textarea type="text" className='w-100' required placeholder='Descripción*' rows={5} />
+                        <textarea type="text" className='w-100' required placeholder='Descripción*' rows={5}
+                            onChange={(e) => setMessage(e.target.value)} />
                     </div>
                 </div>
-                <button type="submit" className="submit-button">Enviar</button>
-            </form>
+                <button onClick={sendMail} className="submit-button">Enviar</button>
+            </div>
         </div>
     );
 }
