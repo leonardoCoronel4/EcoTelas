@@ -32,7 +32,7 @@ export const applicationSchema = z.object({
     textileTypes: z.array(z.string()).min(1, 'Debes seleccionar al menos un tipo de textil'),
     company: z.string().min(1, ''),
     owner: z.string().min(1, ''),
-    address: z.string().min(5, "La dirección es necesaria"),
+    address: z.string().min(1, "La dirección es necesaria"),
     description: z.string().optional(),
     schedule: z.string().min(1, "El Horario es obligatorio"),
     date: z.string().min(1, "La Fecha es obligatoria")
@@ -66,6 +66,11 @@ const Companies = () => {
         formMethods.setValue('company', event.id)
         openModal();
     };
+    const handleCloseModal = () => {
+        closeModal(); 
+        handleClose();
+    };
+
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -169,15 +174,15 @@ const Companies = () => {
                 </div>
             </div>
             <div id="custom-modal" className="custom-modal hidden">
-                <div className="custom-modal-overlay" onClick={closeModal}></div>
+                <div className="custom-modal-overlay" onClick={handleCloseModal}></div>
                 <div className="custom-modal-content" >
-                    <div className="custom-modal-overlay2" onClick={closeModal}></div>
+                    <div className="custom-modal-overlay2" onClick={handleCloseModal}></div>
                     <div className="d-flex flex-row justify-content-evenly align-items-center text-start" >
                         <div className='modalCompanie me-2'>
                             <div className='text-left'  >
                                 <h1>Información de Empresa</h1>
                             </div>
-                            <button type="button" className="closeButtonModal" onClick={closeModal}>x</button>
+                            <button type="button" className="closeButtonModal" onClick={handleCloseModal}>x</button>
                             {selectedCompany ? (
                                 <div className='row'>
                                     <div className='col-md-5'>
@@ -262,7 +267,7 @@ const Companies = () => {
                                             name="date"
                                             placeholder="Fecha:"
                                             className="ml-3 mt-4"
-                                            error={errors.owner?.message}
+                                            error={errors.date?.message}
                                             register={register}
                                         />
                                         <div className='mt-4 d-flex justify-content-between'>
